@@ -1,6 +1,6 @@
 {
   "name": "Reusable Flows",
-  "description": "Blank Process",
+  "description": "UiPath Reusable Flows",
   "main": "Login.xaml",
   "dependencies": {
     "UiPath.Excel.Activities": "[2.6.3]",
