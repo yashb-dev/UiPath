@@ -1,18 +1,21 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Login_Desktop_Application" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="application_browser" Type="InArgument(ui:Browser)" />
     <x:Property Name="username" Type="InArgument(x:String)" />
     <x:Property Name="password" Type="InArgument(x:String)" />
+    <x:Property Name="application_window" Type="InArgument(ui:Window)" />
     <x:Property Name="timeout" Type="InArgument(x:Int32)" />
     <x:Property Name="login_bre" Type="InArgument(ui:BusinessRuleException)" />
   </x:Members>
+  <this:Login_Desktop_Application.application_window>
+    <InArgument x:TypeArguments="ui:Window" />
+  </this:Login_Desktop_Application.application_window>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>622,1087</sap:VirtualizedContainerService.HintSize>
-  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <sap:VirtualizedContainerService.HintSize>622,1047</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Login Desktop Application_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="22">
+    <scg:List x:TypeArguments="x:String" Capacity="21">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -34,15 +37,15 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
-      <x:String>UiPath</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="18">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="16">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Drawing</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
@@ -54,24 +57,21 @@
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Interop</AssemblyReference>
-      <AssemblyReference>System.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.ValueTuple</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="602,987" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="Login Desktop Application" sap:VirtualizedContainerService.HintSize="602,987" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope BrowserType="{x:Null}" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[application_browser]" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="560,895" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
-      <ui:BrowserScope.Body>
+    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Attach Window" sap:VirtualizedContainerService.HintSize="560,895" sap2010:WorkflowViewState.IdRef="WindowScope_1" Window="[application_window]">
+      <ui:WindowScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,787" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="526,787" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="logged_in" />
             </Sequence.Variables>
@@ -80,7 +80,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into" sap:VirtualizedContainerService.HintSize="484,96" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[username]">
+            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Username" sap:VirtualizedContainerService.HintSize="484,96" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[username]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
                   <ui:Target.TimeoutMS>
@@ -92,7 +92,7 @@
                 </ui:Target>
               </ui:TypeInto.Target>
             </ui:TypeInto>
-            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into" sap:VirtualizedContainerService.HintSize="484,96" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[password]">
+            <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Password" sap:VirtualizedContainerService.HintSize="484,96" sap2010:WorkflowViewState.IdRef="TypeInto_4" Text="[password]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
                   <ui:Target.TimeoutMS>
@@ -104,7 +104,7 @@
                 </ui:Target>
               </ui:TypeInto.Target>
             </ui:TypeInto>
-            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" sap:VirtualizedContainerService.HintSize="484,68" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Submit" sap:VirtualizedContainerService.HintSize="484,68" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -126,7 +126,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
-            <ui:UiElementExists DisplayName="Element Exists" Exists="[logged_in]" sap:VirtualizedContainerService.HintSize="484,68" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+            <ui:UiElementExists DisplayName="Check Logged In" Exists="[logged_in]" sap:VirtualizedContainerService.HintSize="484,68" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
               <ui:UiElementExists.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="[timeout]">
                   <ui:Target.WaitForReady>
@@ -135,14 +135,14 @@
                 </ui:Target>
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
-            <If Condition="[logged_in = False AND login_bre IsNot Nothing]" sap:VirtualizedContainerService.HintSize="484,207" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[logged_in = False AND login_bre IsNot Nothing]" DisplayName="If Login Failed and BRE defined" sap:VirtualizedContainerService.HintSize="484,207" sap2010:WorkflowViewState.IdRef="If_2">
               <If.Then>
-                <Throw Exception="[login_bre]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                <Throw Exception="[login_bre]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
               </If.Then>
             </If>
           </Sequence>
         </ActivityAction>
-      </ui:BrowserScope.Body>
-    </ui:BrowserScope>
+      </ui:WindowScope.Body>
+    </ui:WindowScope>
   </Sequence>
 </Activity>
